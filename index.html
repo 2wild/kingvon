@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <article>
+      <div class="item-wrapper">
+        <figure>
+          <div
+            class="image"
+            style="
+              background-image: url(https://i.pinimg.com/736x/b3/16/b9/b316b9cce4a1cf74b2a51e937aa5d743.jpg);
+            "
+          ></div>
+          <div class="lighting"></div>
+        </figure>
+        <div class="item-content">
+          <h1>First oceaan Title</h1>
+          <p>its the ocean of eritrea</p>
+          <div class="author">red sea</div>
+        </div>
+      </div>
+    </article>
+    <article>
+      <div class="item-wrapper">
+        <figure>
+          <div
+            class="image"
+            style="
+              background-image: url(https://i.pinimg.com/564x/6b/28/3f/6b283fa2c249163b77cbebf6b07ff47a.jpg);
+            "
+          ></div>
+          <div class="lighting"></div>
+        </figure>
+        <div class="item-content">
+          <h1>Second ocean  Title</h1>
+          <p>ita the same sea but heart of red sea</p>
+          <div class="author">red sea</div>
+        </div>
+      </div>
+    </article>
+    <article>
+      <div class="item-wrapper">
+        <figure>
+          <div
+            class="image"
+            style="
+              background-image: url(https://i.pinimg.com/564x/53/68/60/5368600dfe2da775599a088df6f48eac.jpg);
+            "
+          ></div>
+          <div class="lighting"></div>
+        </figure>
+        <div class="item-content">
+          <h1>Third sea Title</h1>
+          <p>is the israel sea that called</p>
+          <div class="author">mediterranean sea</div>
+        </div>
+      </div>
+    </article>
+    <script>
+      var articles = $("article > .item-wrapper"),
+        lightingRgb = "255,255,255";
+
+      articles.mousemove(function (e) {
+        var current = $(this),
+          x = current.width() - e.offsetX * 2,
+          y = current.height() - e.offsetY * 2,
+          rx = -x / 30,
+          ry = y / 24,
+          deg = Math.atan2(y, x) * (180 / Math.PI) + 45;
+        current.css({
+          transform:
+            "scale(1.05) rotateY(" + rx + "deg) rotateX(" + ry + "deg)",
+        });
+        $("figure > .lighting", this).css(
+          "background",
+          "linear-gradient(" +
+            deg +
+            "deg, rgba(" +
+            lightingRgb +
+            ",0.32) 0%, rgba(" +
+            lightingRgb +
+            ",0) 100%)"
+        );
+      });
+
+      articles.on({
+        mouseenter: function () {
+          var current = $(this);
+          current.addClass("enter ease").removeClass("leave");
+          setTimeout(function () {
+            current.removeClass("ease");
+          }, 280);
+        },
+        mouseleave: function () {
+          var current = $(this);
+          current.css({ transform: "rotate(0)" });
+          current.removeClass("enter").addClass("leave");
+          $("figure > .lighting", this).removeAttr("style");
+        },
+      });
+    </script>
+  </body>
+</html>
